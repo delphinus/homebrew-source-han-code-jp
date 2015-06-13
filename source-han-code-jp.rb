@@ -97,9 +97,11 @@ end
 
 __END__
 :powerline: |
-  --- a/scripts/powerline-fontpatcher	2015-06-13 18:40:18.000000000 +0900
-  +++ b/scripts/powerline-fontpatcher	2015-06-13 18:41:50.000000000 +0900
-  @@ -71,6 +71,13 @@
+  diff --git a/scripts/powerline-fontpatcher b/scripts/powerline-fontpatcher
+  index ed2bc65..7ff2136 100755
+  --- a/scripts/powerline-fontpatcher
+  +++ b/scripts/powerline-fontpatcher
+  @@ -71,6 +71,13 @@ class FontPatcher(object):
    				if bbox[3] > target_bb[3]:
    					target_bb[3] = bbox[3]
 
@@ -113,7 +115,7 @@ __END__
    			# Find source and target size difference for scaling
    			x_ratio = (target_bb[2] - target_bb[0]) / (source_bb[2] - source_bb[0])
    			y_ratio = (target_bb[3] - target_bb[1]) / (source_bb[3] - source_bb[1])
-  @@ -105,10 +112,7 @@
+  @@ -105,10 +112,7 @@ class FontPatcher(object):
    			target_font.em = target_font_em_original
 
    			# Generate patched font
