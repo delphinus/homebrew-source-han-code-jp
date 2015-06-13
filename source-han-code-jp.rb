@@ -129,7 +129,7 @@ __END__
 
 :webdevicons: |
   diff --git a/font-patcher b/font-patcher
-  index 74a2191..4e82b2a 100755
+  index 74a2191..3874975 100755
   --- a/font-patcher
   +++ b/font-patcher
   @@ -32,14 +32,6 @@ if args.single:
@@ -187,12 +187,17 @@ __END__
    # Update the font encoding to ensure that the Unicode glyphs are available
    sourceFont.encoding = 'ISO10646'
 
-  @@ -239,7 +211,7 @@ extension = os.path.splitext(sourceFont.path)[1]
+  @@ -234,12 +206,10 @@ def copy_glyphs(sourceFont, sourceFontStart, sourceFontEnd, symbolFont, symbolFo
+   copy_glyphs(sourceFont, sourceFontRange1Start, sourceFontRange1End, symbols, symbolsRangeStart, symbolsRangeEnd)
+   copy_glyphs(sourceFont, sourceFontRange2Start, sourceFontRange2End, symbols2, symbols2RangeStart, symbols2RangeEnd)
+
+  -extension = os.path.splitext(sourceFont.path)[1]
+  -
    # @todo later add option to generate the sfd?
    #sourceFont.save(sourceFont.fullname + ".sfd")
 
   -sourceFont.generate(sourceFont.fullname + extension)
-  +sourceFont.generate(sourceFont.path)
+  +sourceFont.generate(args.font)
 
    print "Generated"
    print sourceFont.fullname
