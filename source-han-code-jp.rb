@@ -69,7 +69,7 @@ class SourceHanCodeJp < Formula
       end
     end
 
-    if build.include?('webdevicons')
+    if build.include? 'webdevicons'
       otf_files.each do |ttf|
         system "fontforge -lang=py -script #{webdevicons_script} #{ttf}"
       end
