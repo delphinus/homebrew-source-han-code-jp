@@ -45,6 +45,7 @@ class SourceHanCodeJp < Formula
 
   def install
     font_name = self.class.name.split('::')[-1]
+    powerline_script = []
 
     if build.include? 'powerline'
       powerline = Powerline.new
