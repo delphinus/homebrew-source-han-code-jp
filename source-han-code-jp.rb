@@ -60,7 +60,6 @@ class SourceHanCodeJp < Formula
       webdevicons_script = buildpath + 'font-patcher'
     end
 
-    share_fonts = share + 'fonts'
     otf_files = Dir["OTF/#@@font_name/*.otf"]
     powerline_args = ['--no-rename']
 
@@ -77,7 +76,8 @@ class SourceHanCodeJp < Formula
       end
     end
 
-    share_fonts.install Dir['Ricty*.ttf']
+    prefix.install %w[LICENSE.txt README.md]
+    (share + 'fonts').install otf_files
   end
 
   def caveats;
