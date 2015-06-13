@@ -46,12 +46,14 @@ class SourceHanCodeJp < Formula
   depends_on 'fontforge'
 
   def install
+    font_name = self.class.name.split('::')[-1]
+
     if build.include? 'powerline'
       powerline = Powerline.new
       powerline.brew { buildpath.install Dir['*'] }
       powerline.patch
       powerline_script << buildpath + 'scripts/powerline-fontpatcher'
-      rename_from = "(#{self.class.name})-?"
+      rename_from = "(#{font_name})-?"
       rename_to = "\\1 "
     end
 
@@ -70,7 +72,7 @@ class SourceHanCodeJp < Formula
     end
 
     share_fonts = share + 'fonts'
-    otf_files = Dir["OTF/#{self.class.name}/*.otf"]
+    otf_files = Dir["OTF/#{font_name}/*.otf"]
 
     if build.include?('powerline') || build.include?('vim-powerline')
       powerline_script.each do |script|
@@ -91,7 +93,7 @@ class SourceHanCodeJp < Formula
   end
 
   def caveats;
-    generated = "#{share}/fonts/#{self.class.name}-*.otf"
+    generated = "#{share}/fonts/#{self.class.name.split('::')[-1]}-*.otf"
     <<-EOS.undent
       ***************************************************
       Generated files:
