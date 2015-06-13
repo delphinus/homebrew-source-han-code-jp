@@ -43,9 +43,9 @@ class SourceHanCodeJp < Formula
 
   depends_on 'fontforge'
 
-  def install
-    font_name = self.class.name.split('::')[-1]
+  @@font_name = 'SourceHanCodeJP'
 
+  def install
     if build.include? 'powerline'
       powerline = Powerline.new
       powerline.brew { buildpath.install Dir['*'] }
@@ -61,7 +61,7 @@ class SourceHanCodeJp < Formula
     end
 
     share_fonts = share + 'fonts'
-    otf_files = Dir["OTF/#{font_name}/*.otf"]
+    otf_files = Dir["OTF/#@@font_name/*.otf"]
     powerline_args = ['--no-rename']
 
     if build.include? 'powerline'
@@ -81,7 +81,7 @@ class SourceHanCodeJp < Formula
   end
 
   def caveats;
-    generated = "#{share}/fonts/#{self.class.name.split('::')[-1]}-*.otf"
+    generated = "#{share}/fonts/#@@font_name-*.otf"
     <<-EOS.undent
       ***************************************************
       Generated files:
