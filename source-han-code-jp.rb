@@ -35,7 +35,7 @@ end
 class SourceHanCodeJp < Formula
   homepage 'https://github.com/adobe-fonts/source-han-code-jp'
   version '1.002R'
-  url "https://github.com/adobe-fonts/source-han-code-jp/archive/#{version}.002R.zip"
+  url "https://github.com/adobe-fonts/source-han-code-jp/archive/#{version}.zip"
   sha1 'f225fbcf64e91ef1b77a5584b141d4f90e4e6874'
 
   option 'powerline', 'Patch for Powerline'
