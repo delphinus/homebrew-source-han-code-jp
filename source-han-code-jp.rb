@@ -40,7 +40,6 @@ class SourceHanCodeJp < Formula
 
   option 'powerline', 'Patch for Powerline'
   option 'webdevicons', 'Patch for vim-webdevicons'
-  option 'patch-in-place', "Patch Powerline glyphs directly into Ricty fonts without creating new 'for Powerline' fonts"
 
   depends_on 'fontforge'
 
@@ -52,8 +51,6 @@ class SourceHanCodeJp < Formula
       powerline.brew { buildpath.install Dir['*'] }
       powerline.patch
       powerline_script << buildpath + 'scripts/powerline-fontpatcher'
-      rename_from = "(#{font_name})-?"
-      rename_to = "\\1 "
     end
 
     if build.include? 'webdevicons'
@@ -65,12 +62,13 @@ class SourceHanCodeJp < Formula
 
     share_fonts = share + 'fonts'
     otf_files = Dir["OTF/#{font_name}/*.otf"]
+    powerline_args = ['--no-rename']
 
     if build.include? 'powerline'
       powerline_script.each do |script|
         ttf_files.each do |ttf|
           system "fontforge -lang=py -script #{script} #{powerline_args.join(' ')} #{ttf}"
-          mv ttf.gsub(/#{rename_from}/, rename_to), ttf if build.include? 'patch-in-place'
+          mv 'None.otf', ttf
         end
       end
     end
