@@ -61,11 +61,10 @@ class SourceHanCodeJp < Formula
     end
 
     otf_files = Dir["OTF/#@@font_name/*.otf"]
-    powerline_args = ['--no-rename']
 
     if build.include? 'powerline'
       otf_files.each do |otf|
-        system "fontforge -lang=py -script #{powerline_script} #{powerline_args.join(' ')} #{otf}"
+        system "fontforge -lang=py -script #{powerline_script} --no-rename #{otf}"
         mv 'None.otf', otf
       end
     end
