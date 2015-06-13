@@ -84,7 +84,7 @@ class SourceHanCodeJp < Formula
     <<-EOS.undent
       ***************************************************
       Generated files:
-        #{Dir[generated].join("\n      ")}
+        #{Dir[generated].join("\n        ")}
       ***************************************************
       To install Ricty:
         $ cp -f #{generated} ~/Library/Fonts/
