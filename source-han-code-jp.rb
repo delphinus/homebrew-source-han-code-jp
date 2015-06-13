@@ -66,15 +66,15 @@ class SourceHanCodeJp < Formula
 
     if build.include? 'powerline'
       powerline_script.each do |script|
-        ttf_files.each do |ttf|
-          system "fontforge -lang=py -script #{script} #{powerline_args.join(' ')} #{ttf}"
-          mv 'None.otf', ttf
+        otf_files.each do |otf|
+          system "fontforge -lang=py -script #{script} #{powerline_args.join(' ')} #{otf}"
+          mv 'None.otf', otf
         end
       end
     end
 
     if build.include?('webdevicons')
-      ttf_files.each do |ttf|
+      otf_files.each do |ttf|
         system "fontforge -lang=py -script #{webdevicons_script} #{ttf}"
       end
     end
