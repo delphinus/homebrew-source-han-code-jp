@@ -45,13 +45,12 @@ class SourceHanCodeJp < Formula
 
   def install
     font_name = self.class.name.split('::')[-1]
-    powerline_script = []
 
     if build.include? 'powerline'
       powerline = Powerline.new
       powerline.brew { buildpath.install Dir['*'] }
       powerline.patch
-      powerline_script << buildpath + 'scripts/powerline-fontpatcher'
+      powerline_script = buildpath + 'scripts/powerline-fontpatcher'
     end
 
     if build.include? 'webdevicons'
@@ -66,11 +65,9 @@ class SourceHanCodeJp < Formula
     powerline_args = ['--no-rename']
 
     if build.include? 'powerline'
-      powerline_script.each do |script|
-        otf_files.each do |otf|
-          system "fontforge -lang=py -script #{script} #{powerline_args.join(' ')} #{otf}"
-          mv 'None.otf', otf
-        end
+      otf_files.each do |otf|
+        system "fontforge -lang=py -script #{powerline_script} #{powerline_args.join(' ')} #{otf}"
+        mv 'None.otf', otf
       end
     end
 
