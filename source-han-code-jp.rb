@@ -100,11 +100,12 @@ end
 
 __END__
 :powerline: |
-  diff --git a/scripts/powerline-fontpatcher b/scripts/powerline-fontpatcher
-  index ed2bc65..094c974
-  --- a/scripts/powerline-fontpatcher
-  +++ b/scripts/powerline-fontpatcher
-  @@ -73,0 +74,7 @@ class FontPatcher(object):
+  --- a/scripts/powerline-fontpatcher	2015-06-13 18:40:18.000000000 +0900
+  +++ b/scripts/powerline-fontpatcher	2015-06-13 18:41:50.000000000 +0900
+  @@ -71,6 +71,13 @@
+   				if bbox[3] > target_bb[3]:
+   					target_bb[3] = bbox[3]
+
   +				# Ignore the above calculation and
   +				# manually set the best values for Ricty
   +				target_bb[0]=0
@@ -112,6 +113,21 @@ __END__
   +				target_bb[2]=1025
   +				target_bb[3]=1650
   +
+   			# Find source and target size difference for scaling
+   			x_ratio = (target_bb[2] - target_bb[0]) / (source_bb[2] - source_bb[0])
+   			y_ratio = (target_bb[3] - target_bb[1]) / (source_bb[3] - source_bb[1])
+  @@ -105,10 +112,7 @@
+   			target_font.em = target_font_em_original
+
+   			# Generate patched font
+  -			extension = os.path.splitext(target_font.path)[1]
+  -			if extension.lower() not in ['.ttf', '.otf']:
+  -				# Default to OpenType if input is not TrueType/OpenType
+  -				extension = '.otf'
+  +			extension = '.otf'
+   			target_font.generate('{0}{1}'.format(target_font.fullname, extension))
+
+   fp = FontPatcher(args.source_font, args.target_fonts, args.rename_font)
 
 :webdevicons: |
   diff --git a/font-patcher b/font-patcher
